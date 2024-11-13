@@ -18,6 +18,12 @@ import o50d from './50d.svg';
 import o50n from './50n.svg';
 import NA from './NA.svg';
 
+import humidity from './humidity.svg';
+import sunrise from './sunrise.svg';
+import sunset from './sunset.svg';
+import wind from './wind.svg';
+import thermometer from './thermometer.svg';
+
 export default {
     '01d': o1d,
     '01n': o1n,
@@ -38,4 +44,9 @@ export default {
     '50d': o50d,
     '50n': o50n,
     'NA': NA,
+    'humidity': humidity,
+    'sunrise': sunrise,
+    'sunset': sunset,
+    'wind': wind,
+    'thermometer': thermometer
 };
