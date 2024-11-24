@@ -5,6 +5,7 @@ import weatherIcons from '../assets/weatherIcons';
 const CurrentWeather = () => {
     const [lat, setLat] = useState(51.509865); // Default latitude (London)
     const [lon, setLon] = useState(-0.118092); // Default longitude (London)
+    const [city, setCity] = useState("London");
     const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
     const now = new Date();
     const formattedDate = now.toDateString();
@@ -28,10 +29,40 @@ const CurrentWeather = () => {
         return date.toLocaleTimeString("en-US", { hour: "numeric", minute: "numeric", hour12: true });
     };
 
+    const handleLocationChange = (event) => {
+        event.preventDefault();
+        setCity(event.target.elements.city.value);
+        onLocationChange(event.target.elements.city.value);
+    }
+
     const fetchData = async (latitude, longitude) => {
         try {
             const response = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+            );
+            console.log(response);
+            setWeatherDetails({
+                temp: response.data.main.temp,
+                humidity: response.data.main.humidity,
+                wind: response.data.wind.speed,
+                description: capitalizeFirst(response.data.weather[0].description),
+                icon: response.data.weather[0].icon,
+                city: response.data.name,
+                country: response.data.sys.country,
+                feelsLike: response.data.main.feels_like,
+                visibility: response.data.visibility / 1000,
+                sunrise: formatTime(response.data.sys.sunrise),
+                sunset: formatTime(response.data.sys.sunset)
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const onLocationChange = async(city) => {
+        try {
+            const response = await axios.get(
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
             );
             console.log(response);
             setWeatherDetails({
@@ -91,7 +122,7 @@ const CurrentWeather = () => {
                             <p className="sm:text-xl text-md text-center text-gray-600 sm:mt-3 mt-0">{weatherDetails.description}</p>
                         </div>
                         <div class="col-span-3 flex flex-col justify-between">
-                            <form>
+                            <form onSubmit={handleLocationChange}>
                                 <div className="w-full flex gap-2 my-4">
                                     <input
                                         id="city"
@@ -101,7 +132,7 @@ const CurrentWeather = () => {
                                         autoComplete="city"
                                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-600 sm:text-sm/6 pl-3 h-15"
                                     />
-                                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full">
+                                    <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full">
                                         Search
                                     </button>
                                 </div>
