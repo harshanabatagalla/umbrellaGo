@@ -23,6 +23,7 @@ import sunrise from './sunrise.svg';
 import sunset from './sunset.svg';
 import wind from './wind.svg';
 import thermometer from './thermometer.svg';
+import fog from './fog.svg'
 
 export default {
     '01d': o1d,
@@ -48,5 +49,6 @@ export default {
     'sunrise': sunrise,
     'sunset': sunset,
     'wind': wind,
-    'thermometer': thermometer
+    'thermometer': thermometer,
+    'fog' : fog,
 };
