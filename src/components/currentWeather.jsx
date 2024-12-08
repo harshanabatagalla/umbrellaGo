@@ -4,8 +4,8 @@ import weatherIcons from '../assets/weatherIcons';
 import DailyForecast from "./DailyForecast";
 
 const CurrentWeather = () => {
-    const [lat, setLat] = useState(51.509865); // Default latitude (London)
-    const [lon, setLon] = useState(-0.118092); // Default longitude (London)
+    const [lat, setLat] = useState(7.290572); // Default latitude (Kandy)
+    const [lon, setLon] = useState(80.633728); // Default longitude (Kandy)
     const [city, setCity] = useState(null);
     const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
     const now = new Date();
@@ -41,7 +41,6 @@ const CurrentWeather = () => {
             const response = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
             );
-            console.log(response);
             setWeatherDetails({
                 temp: response.data.main.temp,
                 humidity: response.data.main.humidity,
@@ -65,7 +64,6 @@ const CurrentWeather = () => {
             const response = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
             );
-            console.log(response);
             setWeatherDetails({
                 temp: response.data.main.temp,
                 humidity: response.data.main.humidity,
