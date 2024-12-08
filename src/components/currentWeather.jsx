@@ -157,7 +157,7 @@ const CurrentWeather = () => {
                                         <span className="text-sm text-neutral-500">Real Feel</span>
                                         <div className="flex justify-between mt-2 items-center">
                                             <span className="text-2xl text-black">
-                                                {weatherDetails.feelsLike?.toFixed()} °C
+                                                {weatherDetails.feelsLike?.toFixed()} <span className="text-sm font-extralight">° C</span>
                                             </span>
                                             <img src={weatherIcons.thermometer} alt="thermometer" className="w-12 h-12" />
                                         </div>
