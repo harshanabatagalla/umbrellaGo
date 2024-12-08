@@ -12,7 +12,6 @@ const DailyForecast = ({ lat, lon, city }) => {
             const response = await axios.get(
                 `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&cnt=16&units=metric`
             );
-            console.log('forecast', response);
             setWeatherDetails(response.data);
         } catch (error) {
             console.error(error);
@@ -36,7 +35,6 @@ const DailyForecast = ({ lat, lon, city }) => {
             const response = await axios.get(
                 `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=${API_KEY}&cnt=16&units=metric`
             );
-            console.log('forecast', response);
             setWeatherDetails(response.data);
         } catch (error) {
             console.error(error);
