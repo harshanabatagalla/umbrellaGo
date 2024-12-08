@@ -1,5 +1,5 @@
 import React from 'react'
-import CurrentWeather from './components/currentWeather'
+import CurrentWeather from './components/CurrentWeather'
 
 export default function App() {
   return (
