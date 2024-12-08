@@ -115,13 +115,16 @@ const CurrentWeather = () => {
 
     return (
         <>
-            <h3 className="text-md font-light text-neutral-600 text-right my-1"> <span className="font-bold text-black">Today</span> {formattedDate} </h3>
+            <h3 className="text-md font-light text-neutral-600 sm:text-right my-1"> <span className="font-bold text-black">Today</span> {formattedDate} </h3>
             <div className="flex justify-center items-center flex-col">
-                <div>
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 ">
+                <div className="sm:mt-0 mt-4">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-light mb-4 sm:text-left">
                         Weather in <span className="font-semibold">{weatherDetails.city || "your location"}</span>
                     </h1>
                     <div className="bg-slate-200 bg-opacity-30 rounded-xl p-4 mt-4 max-w-fit overflow-auto min-w-full mb-4">
+                    <h2 className='font-semibold text-xl mb-2 ml-3'>
+                Current <span className='font-extralight'>Weather</span>
+            </h2>
                         <div className="grid sm:grid-cols-5 grid-cols-1 gap-2 justify-center">
                             <div class="col-span-2 p-4 bg-[#f8fafc] rounded-xl flex sm:flex-col flex-row justify-between items-center w-full border-4 h-full sm:divide-x-0 divide-x-2">
                                 <img
